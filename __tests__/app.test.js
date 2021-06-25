@@ -70,4 +70,18 @@ describe('demo routes', () => {
 
     expect(res.body).toEqual(car);
   });
+
+  test('updat a car via Put', async () => {
+    const car = await Car.insert({
+      make: 'hyundai',
+      model: 'elentra',
+      year: 2020
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/cars/${car.id}`)
+      .send(car);
+
+    expect(res.body.toEqual)(car);
+  });
 });
