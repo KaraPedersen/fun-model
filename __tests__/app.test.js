@@ -31,4 +31,30 @@ describe('demo routes', () => {
       year: 2012
     });
   });
+
+  test('finds all cars via GET', async () => {
+    const nissan = await Car.insert({
+      make: 'nissan',
+      model: 'armada',
+      year: 2012
+    });
+
+    const ford = await Car.insert({
+      make: 'ford',
+      model: 'mustang gt',
+      year: 2014
+    });
+
+    const hyundai = await Car.insert({
+      make: 'hyundai',
+      model: 'tucson',
+      year: 2011
+    });
+
+    const res = await request(app)
+      .get('/api/v1/cars');
+
+    expect(res.body).toEqual([nissan, ford, hyundai]);
+
+  });
 });
