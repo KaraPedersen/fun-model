@@ -57,4 +57,17 @@ describe('demo routes', () => {
     expect(res.body).toEqual([nissan, ford, hyundai]);
 
   });
+
+  test('find a car via GET', async () => {
+    const car = await Car.insert({
+      make: 'hyundai',
+      model: 'elentra',
+      year: 2020
+    });
+
+    const res = await request(app)
+      .get(`api/v1/cars/${car.id}`);
+
+    expect(res.body).toEqual(car);
+  });
 });
