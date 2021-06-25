@@ -60,13 +60,13 @@ describe('demo routes', () => {
 
   test('find a car via GET', async () => {
     const car = await Car.insert({
-      make: 'hyundai',
-      model: 'elentra',
+      make: 'gmc',
+      model: 'truck',
       year: 2020
     });
 
     const res = await request(app)
-      .get(`api/v1/cars/${car.id}`);
+      .get(`/api/v1/cars/${car.id}`);
 
     expect(res.body).toEqual(car);
   });
